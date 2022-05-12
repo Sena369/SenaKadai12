@@ -25,7 +25,9 @@ class ViewController: UIViewController {
     }
 
     @IBAction private func calculateButton(_ sender: Any) {
-        let taxExcludedMoneyValue = taxExcludedMoneyTextField.text.flatMap { Double($0) } ?? 0
+        let taxExcludedMoneyValue = taxExcludedMoneyTextField.text.flatMap { Double($0) }
+        guard let taxExcludedMoneyValue = taxExcludedMoneyValue else { return }
+
         taxRateValue = consumptionTaxRateTextField.text.flatMap { Double($0) }
         guard let taxRateValue = taxRateValue else { return }
         UserDefaults.standard.set(taxRateValue, forKey: setTaxRateValueKey)
