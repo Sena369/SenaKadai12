@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let setTaxRateValueKey = "setTaxRateValue"
+    private let setTaxRateValueKey = "setTaxRateValue"
     private var taxRateValue: Double?
 
     @IBOutlet private weak var taxExcludedMoneyTextField: UITextField!
