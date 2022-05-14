@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private let setTaxRateValueKey = "setTaxRateValue"
+    private let taxRateKey = "taxRate"
     private var taxRateValue: Double?
 
     @IBOutlet private weak var taxExcludedMoneyTextField: UITextField!
@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        taxRateValue = UserDefaults.standard.object(forKey: setTaxRateValueKey) as? Double
+        taxRateValue = UserDefaults.standard.double(forKey: taxRateKey)
         if let taxRateValue = taxRateValue {
             consumptionTaxRateTextField.text = String(Int(taxRateValue))
         }
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 
         taxRateValue = consumptionTaxRateTextField.text.flatMap { Double($0) }
         guard let taxRateValue = taxRateValue else { return }
-        UserDefaults.standard.set(taxRateValue, forKey: setTaxRateValueKey)
+        UserDefaults.standard.set(taxRateValue, forKey: taxRateKey)
 
         let resultValue = Int(taxExcludedMoneyValue * ( 1 + taxRateValue / 100))
         taxIncludedMoneyLabel.text = String(resultValue)
